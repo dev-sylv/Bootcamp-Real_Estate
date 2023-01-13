@@ -89,7 +89,56 @@ const UpdateHouse = async(req: Request, res: Response): Promise<Response> =>{
 }
 
 // Delete a house:
-// Search For House:
-// View Blogs on the site:
+const removeHouse = async(req: Request, res: Response): Promise<Response> =>{
+    try {
+        const deletedHouse = await houseModel.findByIdAndRemove(req.params.houseID);
+        return res.status(200).json({
+            message: "Successfully deleted this house",
+            data: deletedHouse
+        })
+    } catch (error) {
+        return res.status(400).json({
+            message: "An error occured in deleting this house",
+            data: error
+        })
+    }
+}
 
-export { getAllHouse, getOneHouse, uploadHouses }
+// Search For House:
+const inputSearch = async(req: Request, res: Response): Promise<Response> =>{
+    try {
+        const searchValue = await houseModel.find(req.query);
+        return res.status(200).json({
+            message: "Search Input result successfully gotten",
+            data: searchValue
+        })
+    } catch (error) {
+        return res.status(400).json({
+            message: "An error occured, couldn't get the searched input",
+            data: error
+        })
+    }
+}
+
+// View Blogs on the site:
+const houseViews = async(req: Request, res: Response): Promise<Response> =>{
+    try {
+        const views = await houseModel.findByIdAndUpdate(
+            req.params.houseID, 
+            {
+                $push: {views: req.params.ip}
+            },
+            {new: true}
+        )
+        return res.status(200).json({
+            message: "Successfully got users views on this house"
+        })
+    } catch (error) {
+        return res.status(400).json({
+            message: "Couldn't get users views",
+            data: error
+        })
+    }
+}
+
+export { getAllHouse, getOneHouse, uploadHouses, UpdateHouse, removeHouse, inputSearch, houseViews }
