@@ -8,9 +8,9 @@ interface houses{
     bedrooms: string;
     bathrooms: string;
     houseImage: string;
-    houseTypes: string;
+    houseRentage: string;
     cities: string;
-    houseModels: string;
+    houseTypes: string;
 }
 
 interface iHouses extends houses, mongoose.Document{};
@@ -18,46 +18,55 @@ interface iHouses extends houses, mongoose.Document{};
 const houseSchema = new mongoose.Schema({
     houseName: {
         type: String,
-        require: true
+        required: [true, "Please enter a House Name"],
+        trim: true,
     },
     houseAddress: {
         type: String,
-        require: true,
-        unique: true
+        required: [true, "Please enter a House Address"],
+        unique: true,
+        trim: true,
     },
     houseDescription: {
         type: String,
-        require: true,
-        unique: true
+        required: [true, "Please enter a House Description"],
+        trim: true,
     },
     housePrice: {
         type: String,
-        require: true
+        required: [true, "Please enter a House Price"],
+        trim: true,
     },
     bedrooms: {
         type: String,
-        require: true
+        required: [true, "Please enter a House Description"],
+        trim: true,
     },
     bathrooms: {
         type: String,
-        require: true
+        required: [true, "Please enter a House Description"],
+        trim: true,
     },
     houseImage: {
         type: String,
-        require: true,
+        required: true,
         unique: true
+        trim: true,
     },
     houseTypes: {
         type: String,
-        require: true
+        require: true,
+        trim: true,
     },
     cities: {
         type: String,
-        require: true
+        require: true,
+        trim: true,
     },
     houseStyles: {
         type: String,
-        require: true
+        require: true,
+        trim: true,
     },
 });
 

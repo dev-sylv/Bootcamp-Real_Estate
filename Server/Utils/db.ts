@@ -1,17 +1,14 @@
 import mongoose from "mongoose";
 
+const DB_URL: string = "mongodb://localhost/Real-Estate";
 
-const URI = "mongodb://localhost/RealEstate";
-const liveURI = "";
-
-mongoose.connect(URI);
-
-mongoose.connection.on(
-    "open", () =>{
-        console.log("Database is connected to server");
+const DBconnect = async(): Promise<void> =>{
+    try {
+        const connectString = await mongoose.connect(DB_URL);
+        console.log(`DB is connected to ${connectString.connection.host}`)
+    } catch (error) {
+        console.log("An error occured in connecting DB")
     }
-).once(
-    "error", (error) =>{
-        console.log("An errror occured in connecting real estate database");
-    }
-)
+};
+
+export default DBconnect;

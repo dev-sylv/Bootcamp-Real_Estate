@@ -1,26 +1,15 @@
-import express, { Application, Request, Response } from "express";
-
-import cors from "cors";
-
-import router from "../Routes/houseRoutes";
+import express, { Application } from "express";
+import DBconnect from "../Utils/db";
+import appConfig from "./app";
 
 const port: number = 5000;
 
-require("../Utils/db")
-
 const app: Application = express();
 
-app.use(express.json());
-app.use(cors());
-
-app.get("/", (req: Request, res: Response) =>{
-    return res.status(200).json({
-        message: "Server created successfully for real estate project"
-    })
-});
-
-app.use("api/houses", router)
+DBconnect();
+appConfig(app);
 
 app.listen(port, () =>{
-    console.log("listening to my server port on port", port);
+    console.log("")
+    console.log("Server is created and listening to port", port)
 })
