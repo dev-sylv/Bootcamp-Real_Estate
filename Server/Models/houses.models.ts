@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, {Schema, Document, model} from "mongoose";
 
 interface houses{
     houseName: string;
@@ -9,13 +9,13 @@ interface houses{
     bathrooms: string;
     houseImage: string;
     houseRentage: string;
-    cities: string;
+    houseLocation: string;
     houseTypes: string;
 }
 
-interface iHouses extends houses, mongoose.Document{};
+interface iHouses extends houses, Document{};
 
-const houseSchema = new mongoose.Schema({
+const houseSchema = new Schema({
     houseName: {
         type: String,
         required: [true, "Please enter a House Name"],
@@ -49,27 +49,27 @@ const houseSchema = new mongoose.Schema({
     },
     houseImage: {
         type: String,
-        required: true,
-        unique: true
+        required: [true, "Please enter a House Image"],
+        unique: true,
         trim: true,
     },
-    houseTypes: {
+    houseRentage: {
         type: String,
-        require: true,
+        required: [true, "Please enter a House Type e.g Rent or sale"],
         trim: true,
     },
-    cities: {
+    houseLocation: {
         type: String,
-        require: true,
+        required: [true, "Please enter the house Location"],
         trim: true,
     },
     houseStyles: {
         type: String,
-        require: true,
+        required: [true, "Please enter the house Model e.g Duplex, Bungalows"],
         trim: true,
     },
-});
+}, {timestamps: true});
 
-const houseModel = mongoose.model<iHouses>("house collections", houseSchema);
+const houseModel = model<iHouses>("House collections", houseSchema);
 
 export default houseModel;
