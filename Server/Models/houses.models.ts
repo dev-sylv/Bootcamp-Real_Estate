@@ -11,6 +11,7 @@ interface houses{
     houseRentage: string;
     houseLocation: string;
     houseTypes: string;
+    agentname: string
 }
 
 interface iHouses extends houses, Document{};
@@ -68,8 +69,13 @@ const houseSchema = new Schema({
         required: [true, "Please enter the house Model e.g Duplex, Bungalows"],
         trim: true,
     },
+    agentname: {
+        type: String,
+        required: [true, "Please enter the agent that's posting the house"],
+        trim: true
+    }
 }, {timestamps: true});
 
-const houseModel = model<iHouses>("House collections", houseSchema);
+const houseModel = model<iHouses>("HouseCollections", houseSchema);
 
 export default houseModel;
