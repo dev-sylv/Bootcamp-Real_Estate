@@ -2,7 +2,6 @@ import mongoose, {Schema, Document, model} from "mongoose";
 
 interface houses{
     houseName: string;
-    houseAddress: string;
     houseDescription: string;
     housePrice: string;
     bedrooms: string;
@@ -22,12 +21,6 @@ const houseSchema = new Schema({
         required: [true, "Please enter a House Name"],
         trim: true,
     },
-    houseAddress: {
-        type: String,
-        required: [true, "Please enter a House Address"],
-        unique: true,
-        trim: true,
-    },
     houseDescription: {
         type: String,
         required: [true, "Please enter a House Description"],
@@ -40,18 +33,17 @@ const houseSchema = new Schema({
     },
     bedrooms: {
         type: String,
-        required: [true, "Please enter a House Description"],
+        required: [true, "Please enter the number of bedrooms"],
         trim: true,
     },
     bathrooms: {
         type: String,
-        required: [true, "Please enter a House Description"],
+        required: [true, "Please enter the number of bathrooms"],
         trim: true,
     },
     houseImage: {
         type: String,
         required: [true, "Please enter a House Image"],
-        unique: true,
         trim: true,
     },
     houseRentage: {
@@ -64,16 +56,16 @@ const houseSchema = new Schema({
         required: [true, "Please enter the house Location"],
         trim: true,
     },
-    houseStyles: {
+    houseTypes: {
         type: String,
         required: [true, "Please enter the house Model e.g Duplex, Bungalows"],
         trim: true,
     },
-    agentname: {
+    agentname: [{
         type: String,
         required: [true, "Please enter the agent that's posting the house"],
         trim: true
-    }
+    }]
 }, {timestamps: true});
 
 const houseModel = model<iHouses>("HouseCollections", houseSchema);

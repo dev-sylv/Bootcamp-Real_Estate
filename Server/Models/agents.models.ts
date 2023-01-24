@@ -27,7 +27,7 @@ const agentSchema = new Schema({
         type: String,
         required: [true, "Please enter your image for identification"],
         unique: true,
-        trim:  true
+       
     },
     agentemail: {
         type: String,
@@ -41,12 +41,12 @@ const agentSchema = new Schema({
         required: [true, "Please enter a strong password"],
         minlength: 8,
     },
-    houses : [
+    houses : 
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "HouseCollections"
         }
-    ],
+    ,
     isAdmin: {
         type: Boolean,
         default: false

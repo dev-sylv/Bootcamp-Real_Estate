@@ -6,6 +6,6 @@ const router = Router();
 
 import { agentsUpload } from "../Utils/multer";
 
-router.route("registeragent").post(agentsUpload, registerAgents);
+router.route("/registeragent").post(agentsUpload, registerAgents);
 
 export default router;

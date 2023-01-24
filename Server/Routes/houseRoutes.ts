@@ -1,17 +1,11 @@
-// import { getAllHouse, getOneHouse, houseViews, inputSearch, removeHouse, UpdateHouse, uploadHouses } from "../Controllers/house.controllers";
+import express from "express";
 
-// import houseUploads from "../Utils/multer";
+const router = express.Router();
 
-// import express from "express";
+import {houseUploads} from "../Utils/multer";
 
-// const router = express.Router();
+import { uploadHouses } from "../Controllers/house.controllers";
 
-// router.route("/getallhouse").get(getAllHouse);
-// router.route("/getonehouse/:houseID").get(getOneHouse);
-// router.route("/postnewhouse").post(houseUploads, uploadHouses);
-// router.route("/updateahouse/:houseID").patch(UpdateHouse);
-// router.route("/gethouseviews/:houseID").patch(houseViews);
-// router.route("/deletethishouse/:houseID").delete(removeHouse);
-// router.route("/searchforhouse").get(inputSearch);
+router.route("/uploadhouse").post(houseUploads, uploadHouses);
 
-// export default router;
+export default router;
