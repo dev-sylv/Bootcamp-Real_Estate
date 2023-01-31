@@ -26,7 +26,6 @@ const agentSchema = new Schema({
     agentPicture: {
         type: String,
         required: [true, "Please enter your image for identification"],
-        unique: true,
        
     },
     agentemail: {
